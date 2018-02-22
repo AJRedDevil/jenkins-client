@@ -2,12 +2,13 @@
 
 ## 0.2.0
 > Setup the tech stack
-* [localforage](https://localforage.github.io/localForage)
-* [electron-is-dev](https://github.com/sindresorhus/electron-is-dev)
-* [react](https://reactjs.org/)
-* [parcel](https://parceljs.org/)
-* [styled-components](https://www.styled-components.com/)
-* [material-ui-next](https://material-ui-next.com/)
+
+* [x] [localforage](https://localforage.github.io/localForage)
+* [x] [electron-is-dev](https://github.com/sindresorhus/electron-is-dev)
+* [ ] [react](https://reactjs.org/)
+* [ ] [parcel](https://parceljs.org/)
+* [ ] [styled-components](https://www.styled-components.com/)
+* [ ] [material-ui-next](https://material-ui-next.com/)
 
 
 ## 0.3.0
