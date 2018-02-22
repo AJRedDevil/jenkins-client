@@ -1,6 +1,6 @@
 {
   "name": "jenkins-client",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "jenkins client for LP",
   "main": "main.js",
   "repository": "https://gitlab.com/AJRedDevil/jenkins-client.git",
@@ -17,6 +17,7 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-prettier": "^2.6.0",
     "eslint-plugin-promise": "^3.6.0",
+    "localforage": "^1.5.6",
     "prettier": "^1.10.2"
   }
 }
