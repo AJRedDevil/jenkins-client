@@ -1,0 +1,22 @@
+{
+  "name": "jenkins-client",
+  "version": "0.1.0",
+  "description": "jenkins client for LP",
+  "main": "main.js",
+  "repository": "https://gitlab.com/AJRedDevil/jenkins-client.git",
+  "author": "AJRedDevil <ajan.shresh@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^1.8.2",
+    "eslint": "^4.18.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-promise": "^3.6.0",
+    "prettier": "^1.10.2"
+  }
+}
