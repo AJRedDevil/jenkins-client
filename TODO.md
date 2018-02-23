@@ -7,7 +7,8 @@
 * [x] [electron-is-dev](https://github.com/sindresorhus/electron-is-dev)
 * [x] [react](https://reactjs.org/)
 * [x] [parcel](https://parceljs.org/)
-* [ ] [babel](https://github.com/babel/babel-preset-env)
+* [x] [babel](https://github.com/babel/babel-preset-env)
+* [x] [jest](https://facebook.github.io/jest/)
 * [ ] [styled-components](https://www.styled-components.com/)
 * [ ] [material-ui-next](https://material-ui-next.com/)
 
