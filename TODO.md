@@ -11,6 +11,7 @@
 * [x] [jest](https://facebook.github.io/jest/)
 * [x] [material-ui-next](https://material-ui-next.com/)
 * [ ] [styled-components](https://www.styled-components.com/)
+* [ ] [styled-material-components](https://github.com/MerlinLabs/styled-material-components)
 
 
 ## 0.3.0
