@@ -9,8 +9,8 @@
 * [x] [parcel](https://parceljs.org/)
 * [x] [babel](https://github.com/babel/babel-preset-env)
 * [x] [jest](https://facebook.github.io/jest/)
+* [x] [material-ui-next](https://material-ui-next.com/)
 * [ ] [styled-components](https://www.styled-components.com/)
-* [ ] [material-ui-next](https://material-ui-next.com/)
 
 
 ## 0.3.0
