@@ -5,7 +5,11 @@
   "main": "index.js",
   "author": "AJRedDevil <ajan.shresh@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "parcel -p 3000 index.html"
+  },
   "dependencies": {
+    "parcel-bundler": "^1.6.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },

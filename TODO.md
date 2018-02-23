@@ -5,8 +5,9 @@
 
 * [x] [localforage](https://localforage.github.io/localForage)
 * [x] [electron-is-dev](https://github.com/sindresorhus/electron-is-dev)
-* [ ] [react](https://reactjs.org/)
-* [ ] [parcel](https://parceljs.org/)
+* [x] [react](https://reactjs.org/)
+* [x] [parcel](https://parceljs.org/)
+* [ ] [babel](https://github.com/babel/babel-preset-env)
 * [ ] [styled-components](https://www.styled-components.com/)
 * [ ] [material-ui-next](https://material-ui-next.com/)
 
