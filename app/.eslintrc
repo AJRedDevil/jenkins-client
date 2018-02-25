@@ -22,12 +22,6 @@
     "promise/no-promise-in-callback": "warn",
     "promise/no-callback-in-promise": "warn",
     "promise/avoid-new": "warn",
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
-      }
-    ],
     "prettier/prettier": [
       "error",
       {
