@@ -13,6 +13,7 @@
 * [x] [redux](https://redux.js.org/)
 * [x] [rxjs](http://reactivex.io/rxjs/)
 * [x] [redux-observable](https://redux-observable.js.org/)
+* [x] [react-spinners](https://github.com/davidhu2000/react-spinners)
 
 ## 0.3.0
 > Setup Jenkins for Director Console
