@@ -9,10 +9,10 @@
 * [x] [parcel](https://parceljs.org/)
 * [x] [babel](https://github.com/babel/babel-preset-env)
 * [x] [jest](https://facebook.github.io/jest/)
-* [x] [material-ui-next](https://material-ui-next.com/)
-* [ ] [styled-components](https://www.styled-components.com/)
-* [ ] [styled-material-components](https://github.com/MerlinLabs/styled-material-components)
-
+* [x] [muicss](https://www.muicss.com/)
+* [x] [redux](https://redux.js.org/)
+* [x] [rxjs](http://reactivex.io/rxjs/)
+* [x] [redux-observable](https://redux-observable.js.org/)
 
 ## 0.3.0
 > Setup Jenkins for Director Console
