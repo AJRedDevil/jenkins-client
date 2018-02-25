@@ -6,7 +6,8 @@
   "author": "AJRedDevil <ajan.shresh@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "parcel -p 3000 index.html"
+    "start": "parcel -p 3000 index.html",
+    "testAPI": "node src/index.js"
   },
   "dependencies": {
     "bluebird": "^3.5.1",

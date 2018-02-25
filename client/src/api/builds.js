@@ -38,7 +38,6 @@ const Builds = {
   lastCompletedBuildInfo,
   allBuilds,
   testResult,
-  deleteBuild,
 };
 
 module.exports = Builds;
