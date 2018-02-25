@@ -1,43 +1,43 @@
 {
-  "name": "client",
-  "version": "0.1.0",
-  "description": "UI client for jenkins-client",
-  "main": "index.js",
-  "author": "AJRedDevil <ajan.shresh@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "start": "parcel -p 3000 index.html",
-    "testAPI": "node src/services/api/__tests__/api.test.js"
-  },
-  "dependencies": {
-    "bluebird": "^3.5.1",
-    "dotenv": "^5.0.0",
-    "jenkins-api": "^0.3.1",
-    "muicss": "^0.9.36",
-    "parcel-bundler": "^1.6.2",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-redux": "^5.0.7",
-    "react-spinners": "^0.2.6",
-    "redux": "^3.7.2",
-    "redux-observable": "^0.18.0",
-    "rxjs": "^5.5.6"
-  },
-  "devDependencies": {
-    "babel-eslint": "^8.2.2",
-    "babel-preset-react-app": "^3.1.1",
-    "babel-runtime": "^6.26.0",
-    "eslint": "^4.18.1",
-    "eslint-config-airbnb": "^16.1.0",
-    "eslint-config-prettier": "^2.9.0",
-    "eslint-config-promise": "^1.2.4",
-    "eslint-plugin-import": "^2.9.0",
-    "eslint-plugin-jest": "^21.12.2",
-    "eslint-plugin-jsx-a11y": "^6.0.3",
-    "eslint-plugin-prettier": "^2.6.0",
-    "eslint-plugin-promise": "^3.6.0",
-    "eslint-plugin-react": "^7.7.0",
-    "jest": "^22.4.2",
-    "prettier": "^1.10.2"
-  }
+    "name": "client",
+    "version": "0.1.0",
+    "description": "UI client for jenkins-client",
+    "main": "index.js",
+    "author": "AJRedDevil <ajan.shresh@gmail.com>",
+    "license": "MIT",
+    "scripts": {
+        "start": "parcel -p 3000 index.html",
+        "testAPI": "node src/services/api/__tests__/api.test.js"
+    },
+    "dependencies": {
+        "bluebird": "^3.5.1",
+        "dotenv": "^5.0.0",
+        "jenkins-api": "^0.3.1",
+        "muicss": "^0.9.36",
+        "parcel-bundler": "^1.6.2",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-redux": "^5.0.7",
+        "react-spinners": "^0.2.6",
+        "redux": "^3.7.2",
+        "redux-observable": "^0.18.0",
+        "rxjs": "^5.5.6"
+    },
+    "devDependencies": {
+        "babel-eslint": "^8.2.2",
+        "babel-preset-react-app": "^3.1.1",
+        "babel-runtime": "^6.26.0",
+        "eslint": "^4.18.1",
+        "eslint-config-airbnb": "^16.1.0",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-config-promise": "^1.2.4",
+        "eslint-plugin-import": "^2.9.0",
+        "eslint-plugin-jest": "^21.12.2",
+        "eslint-plugin-jsx-a11y": "^6.0.3",
+        "eslint-plugin-prettier": "^2.6.0",
+        "eslint-plugin-promise": "^3.6.0",
+        "eslint-plugin-react": "^7.7.0",
+        "jest": "^22.4.2",
+        "prettier": "^1.10.2"
+    }
 }
