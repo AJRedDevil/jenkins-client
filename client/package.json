@@ -12,11 +12,10 @@
     "bluebird": "^3.5.1",
     "dotenv": "^5.0.0",
     "jenkins-api": "^0.3.1",
-    "material-ui": "^1.0.0-beta.34",
+    "muicss": "^0.9.36",
     "parcel-bundler": "^1.6.2",
     "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "styled-components": "^3.1.6"
+    "react-dom": "^16.2.0"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
