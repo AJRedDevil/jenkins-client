@@ -5,7 +5,7 @@ const jenkins = require('./jenkinsApi');
 const build = (jenkinJob, params = {}) => jenkins.build(jenkinJob, params);
 
 const buildWithParams = (jenkinJob, params = {}) =>
-  jenkins.build_with_params(JOB, params);
+  jenkins.build_with_params(jenkinJob, params);
 
 const stopBuild = (jenkinJob, params = {}) =>
   jenkins.stop_build(jenkinJob, params);
