@@ -1,16 +1,20 @@
 // npm packages
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Button} from 'muicss/react';
+// eslint-disable-next-line no-unused-vars
+import rxjs from 'rxjs';
+import {Provider} from 'react-redux';
 
-import 'muicss/dist/css/mui.min.css';
+// our packages
+import App from './app';
+import configureStore from './services/store';
 
 const MainApp = () => (
-  <div>
-    <Button varaint="raised" color="primary">
-      Jenkins Client
-    </Button>
-  </div>
+  <Provider store={configureStore()}>
+    <div>
+      <App />
+    </div>
+  </Provider>
 );
 
 ReactDOM.hydrate(<MainApp />, document.getElementById('rootNode'));
