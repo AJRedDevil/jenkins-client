@@ -28,9 +28,6 @@ const allBuilds = (jenkinJob, params = {}) =>
 const testResult = (jenkinJob, buildNumber, params = {}) =>
   jenkins.test_result(jenkinJob, buildNumber, params);
 
-const deleteBuild = (jenkinJob, buildNumber, params = {}) =>
-  jenkins.delete_build(jenkinJob, buildNumber, params);
-
 const Builds = {
   build,
   buildWithParams,
