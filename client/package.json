@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel -p 3000 index.html",
-    "testAPI": "node src/index.js"
+    "testAPI": "node src/services/api/__tests__/api.test.js"
   },
   "dependencies": {
     "bluebird": "^3.5.1",

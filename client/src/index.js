@@ -1,36 +1,16 @@
-require('dotenv').config();
+// npm packages
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Button} from 'muicss/react';
 
-const api = require('./api');
+import 'muicss/dist/css/mui.min.css';
 
-const colors = ['red', 'blue', 'yellow'];
+const MainApp = () => (
+  <div>
+    <Button varaint="raised" color="primary">
+      Jenkins Client
+    </Button>
+  </div>
+);
 
-// api.jobs
-//   .allJobs()
-//   .then(jobs => {
-//     jobs.forEach(async job => {
-//       const {name, color} = job;
-//       if (colors.indexOf(color) > -1) {
-//         fullInfo = await api.jobs.jobInfo(name);
-//         lastBuild = await api.builds.lastBuildInfo(name);
-//         when = new Date(lastBuild['timestamp'] / 1000);
-//       } else {
-//         when = '(unknown)';
-//       }
-//       console.log(`{0:${when} {1:${color}} {${name}}}`);
-//     });
-//     return Promise.resolve();
-//   })
-//   .catch(error => console.error(error));
-
-// api.views
-//   .getAllViews()
-//   .then(views => {
-//     views.forEach(view => console.log(view));
-//     return Promise.resolve();
-//   })
-//   .catch(error => console.error(error));
-
-api.views
-  .viewInfo('Trigger_Management_Console')
-  .then(view => console.log(view))
-  .catch(error => console.error(error));
+ReactDOM.hydrate(<MainApp />, document.getElementById('rootNode'));
