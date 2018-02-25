@@ -1,11 +1,20 @@
-require('dotenv').config();
+// npm packages
+import React from 'react';
+import ReactDOM from 'react-dom';
+// eslint-disable-next-line no-unused-vars
+import rxjs from 'rxjs';
+import {Provider} from 'react-redux';
 
-const api = require('./api');
+// our packages
+import App from './app';
+import configureStore from './services/store';
 
-api.jobs
-  .allJobs()
-  .then(data => {
-    console.log(data);
-    return data;
-  })
-  .catch(error => console.error(error));
+const MainApp = () => (
+  <Provider store={configureStore()}>
+    <div>
+      <App />
+    </div>
+  </Provider>
+);
+
+ReactDOM.hydrate(<MainApp />, document.getElementById('rootNode'));
