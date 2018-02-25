@@ -19,7 +19,7 @@
     "renderer": true,
     "shallow": true
   },
-  "plugins": ["prettier", "react", "jest"],
+  "plugins": ["prettier", "promise", "react", "jest"],
   "rules": {
     "jsx-a11y/anchor-is-valid": "off",
     "prettier/prettier": [
