@@ -1,0 +1,41 @@
+#sidedrawer
+  position: fixed
+  top: 0
+  bottom: 0
+  width: 200px
+  left: -200px
+  overflow: auto
+  z-index: 2
+  background-color: #fff
+  transition: transform 0.2s
+
+@media (min-width: 768px)
+  #sidedrawer
+    transform: translate(200px)
+
+#sidedrawer.active
+  transform: translate(200px)
+
+// CSS
+#sidedrawer-brand
+  padding-left: 20px
+
+#sidedrawer ul
+  list-style: none
+
+#sidedrawer > ul
+  padding-left: 0px
+
+#sidedrawer > ul > li:first-child
+  padding-top: 15px
+
+#sidedrawer strong
+  display: block
+  padding: 15px 22px
+  cursor: pointer
+
+#sidedrawer strong:hover
+  background-color: #E0E0E0
+
+#sidedrawer strong + ul > li
+  padding: 6px 0px

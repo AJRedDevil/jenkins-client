@@ -11,7 +11,7 @@ import configureStore from './services/store';
 
 const MainApp = () => (
   <Provider store={configureStore()}>
-    <div>
+    <div id="full">
       <App />
     </div>
   </Provider>

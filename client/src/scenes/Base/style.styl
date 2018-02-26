@@ -1,0 +1,41 @@
+/**
+ * Body CSS
+ */
+html
+body
+  height: 100%
+  background-color: #eee
+
+html
+body
+input
+textarea
+buttons
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004)
+
+@media (min-width: 768px)
+  #body.hide-sidedrawer #header
+    left: 0
+
+  #body.hide-sidedrawer #sidedrawer
+    transform: translate(0px)
+
+  #body.hide-sidedrawer #content-wrapper
+    margin-left: 0
+
+  #body.hide-sidedrawer #footer
+    margin-left: 0
+
+div#rootNode
+div#full
+div.parent
+  height 100%
+// Center the loader
+div.row
+  height 100%
+  display: grid
+
+div.center-me
+  margin: auto
