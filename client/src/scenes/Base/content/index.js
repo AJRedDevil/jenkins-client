@@ -14,7 +14,7 @@ const Content = () => (
     <div className="mui-container-fluid">
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/token" component={Settings} />
+        <Route path="/settings" component={Settings} />
       </Switch>
     </div>
   </div>

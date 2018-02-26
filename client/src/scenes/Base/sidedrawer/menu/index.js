@@ -1,14 +1,14 @@
 // npm packages
 import React, {Component} from 'react';
-import {range} from 'lodash';
+import {range, isObject} from 'lodash';
 import {withRouter} from 'react-router-dom';
 
 // our packages
 // eslint-disable-next-line import/no-named-as-default
 import SubMenu from './submenu';
 
-const Category = ({text, onCategoryClick, identifier}) => (
-  <strong onClick={onCategoryClick} identifier={identifier}>
+const Category = ({text, onCategoryClick, link, identifier}) => (
+  <strong onClick={onCategoryClick} link={link} identifier={identifier}>
     {text}
   </strong>
 );
@@ -31,8 +31,9 @@ class Menu extends Component {
     this.setState({subMenuActiveStatus: status});
   }
 
-  goToHome = () => {
-    this.props.history.push('/');
+  handleCategoryClick = e => {
+    const link = e.target.getAttribute('link');
+    this.props.history.push(link);
     this.props.toggleSideBar();
   };
 
@@ -47,35 +48,39 @@ class Menu extends Component {
     });
   };
 
-  renderMenu = () =>
-    this.props.schema.map((item, index) => {
+  renderCategorySubMenu = (item, index) => (
+    <div>
+      <Category
+        text={item.category}
+        onCategoryClick={this.toggleSubMenu}
+        identifier={index}
+      />
+      <SubMenu
+        isActive={this.state.subMenuActiveStatus[index]}
+        items={item.items}
+        toggleSideBar={this.props.toggleSideBar}
+      />
+    </div>
+  );
+
+  renderCategoryOnly = item => (
+    <Category
+      text={item.text}
+      link={item.link}
+      onCategoryClick={this.handleCategoryClick}
+    />
+  );
+
+  render() {
+    return this.props.schema.map((item, index) => {
       return (
         <li key={item.id}>
-          <Category
-            text={item.category}
-            identifier={index}
-            onCategoryClick={this.toggleSubMenu}
-          />
-          <SubMenu
-            isActive={this.state.subMenuActiveStatus[index]}
-            items={item.items}
-            toggleSideBar={this.props.toggleSideBar}
-          />
+          {isObject(item.category)
+            ? this.renderCategoryOnly(item.category)
+            : this.renderCategorySubMenu(item, index)}
         </li>
       );
     });
-
-  render() {
-    return (
-      <div>
-        <Category
-          text="Home"
-          identifier="Home"
-          onCategoryClick={this.goToHome}
-        />
-        {this.renderMenu()}
-      </div>
-    );
   }
 }
 

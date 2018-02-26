@@ -20,7 +20,7 @@ SubMenu.propTypes = {
   isActive: PropTypes.bool,
   items: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string,
+      id: PropTypes.number,
       link: PropTypes.string,
       text: PropTypes.string,
     })

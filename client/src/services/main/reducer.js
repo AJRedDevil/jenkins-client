@@ -11,26 +11,29 @@ import {
 
 const schema = [
   {
-    id: uuidv4(),
+    id: 1,
+    category: {
+      text: 'Home',
+      link: '/',
+    },
+  },
+  {
+    id: 2,
     category: 'Build',
     items: [
       {
-        id: uuidv4(),
+        id: 1,
         text: 'Item 1',
         link: 'item1',
       },
     ],
   },
   {
-    id: uuidv4(),
-    category: 'Settings',
-    items: [
-      {
-        id: uuidv4(),
-        text: 'Token',
-        link: 'token',
-      },
-    ],
+    id: 3,
+    category: {
+      text: 'Settings',
+      link: '/settings',
+    },
   },
 ];
 
