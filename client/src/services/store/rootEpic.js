@@ -2,7 +2,8 @@
 import {combineEpics} from 'redux-observable';
 
 // our packages
+import mainEpic from '../main/epic';
 
-const rootEpic = combineEpics();
+const rootEpic = combineEpics(mainEpic);
 
 export default rootEpic;
