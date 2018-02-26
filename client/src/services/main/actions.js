@@ -4,6 +4,7 @@ import {
   LOADING,
   LOADING_COMPLETE,
   TOGGLE_SIDEBAR,
+  DB_CONFIGURED,
 } from './actionTypes';
 
 export const fetchData = () => ({
@@ -25,4 +26,8 @@ export const loadingComplete = () => ({
 
 export const toggleSideBar = () => ({
   type: TOGGLE_SIDEBAR,
+});
+
+export const dbConfigured = () => ({
+  type: DB_CONFIGURED,
 });

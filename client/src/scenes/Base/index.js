@@ -15,7 +15,9 @@ import {
   fetchData,
   toggleSideBar,
   setLoading,
+  dbConfigured,
 } from '../../services/main/actions';
+import db from '../../utils/db';
 
 import './style.styl';
 
@@ -23,6 +25,10 @@ const sideBarClassName = status => (status ? '' : 'hide-sidedrawer');
 
 class Base extends Component {
   componentWillMount() {
+    if (this.props.root.configureDB) {
+      db.configure();
+      this.props.dbConfigured();
+    }
     this.props.setLoading();
     this.props.fetchData();
   }
@@ -75,6 +81,7 @@ const mapDispatchToProps = dispatch => ({
   fetchData: () => dispatch(fetchData()),
   toggleSideBar: () => dispatch(toggleSideBar()),
   setLoading: () => dispatch(setLoading()),
+  dbConfigured: () => dispatch(dbConfigured()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Base);

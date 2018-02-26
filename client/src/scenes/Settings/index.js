@@ -1,17 +1,41 @@
 // npm packages
 import React, {Component} from 'react';
 import {Form, Input, Button} from 'muicss/react';
+import {isNull} from 'lodash';
+
+// our packages
+import db from '../../utils/db';
 
 class Settings extends Component {
   state = {
     token: '',
+    tokenExist: false,
   };
+
+  componentWillMount() {
+    db
+      .fetch('token')
+      .then(
+        data =>
+          isNull(data)
+            ? this.setState({...this.state, tokenExist: false})
+            : this.setState({...this.state, tokenExist: true})
+      )
+      .catch(error => console.error(error));
+  }
 
   handleFormSubmit = e => {
     e.preventDefault();
-    // TODO: Store it using localforage and update the token.
-    // TODO: Renew the jenkins object.
-    console.log(e.target);
+    db
+      .save('token', this.state.token)
+      // TODO: Toast message
+      .then(
+        data =>
+          isNull(data)
+            ? console.log(data) // TODO: Toast error message
+            : this.setState({...this.state, tokenExist: true, token: ''})
+      )
+      .catch(error => console.error(error));
   };
 
   handleChange = e => {
@@ -29,7 +53,9 @@ class Settings extends Component {
           value={this.state.token}
           onChange={this.handleChange}
         />
-        <Button variant="raised">Submit</Button>
+        <Button variant="raised">
+          {this.state.tokenExist ? 'Update' : 'Submit'}
+        </Button>
       </Form>
     );
   }
