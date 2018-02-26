@@ -1,64 +1,74 @@
 // npm packages
 import React, {Component} from 'react';
 import {Form, Input, Button} from 'muicss/react';
-import {isNull} from 'lodash';
+import {connect} from 'react-redux';
 
 // our packages
-import db from '../../utils/db';
+import {loadData, saveData, saveInDB} from '../../services/settings/actions';
+
+const KEY = 'jenkinsInfo';
 
 class Settings extends Component {
-  state = {
-    token: '',
-    tokenExist: false,
-  };
-
   componentWillMount() {
-    db
-      .fetch('token')
-      .then(
-        data =>
-          isNull(data)
-            ? this.setState({...this.state, tokenExist: false})
-            : this.setState({...this.state, tokenExist: true})
-      )
-      .catch(error => console.error(error));
+    this.props.loadData(KEY);
   }
 
   handleFormSubmit = e => {
     e.preventDefault();
-    db
-      .save('token', this.state.token)
-      // TODO: Toast message
-      .then(
-        data =>
-          isNull(data)
-            ? console.log(data) // TODO: Toast error message
-            : this.setState({...this.state, tokenExist: true, token: ''})
-      )
-      .catch(error => console.error(error));
+    this.props.saveInDB({
+      key: KEY,
+      value: this.props.settings.newState,
+    });
+    this.props.saveData({dataLoaded: true});
   };
 
   handleChange = e => {
     e.preventDefault();
-    this.setState({...this.state, token: e.target.value});
+    const key = e.target.getAttribute('identifier');
+    const {value} = e.target;
+    this.props.saveData({key, value});
   };
 
   render() {
+    const {jenkinsInfo, dataLoaded, newState} = this.props.settings;
     return (
       <Form onSubmit={this.handleFormSubmit}>
         <legend>Settings</legend>
         <Input
           required
-          placeholder="token"
-          value={this.state.token}
+          placeholder="ip"
+          identifier="ip"
+          value={newState.ip || jenkinsInfo.ip}
           onChange={this.handleChange}
         />
-        <Button variant="raised">
-          {this.state.tokenExist ? 'Update' : 'Submit'}
-        </Button>
+        <Input
+          required
+          placeholder="username"
+          identifier="username"
+          value={newState.username || jenkinsInfo.username}
+          onChange={this.handleChange}
+        />
+        <Input
+          required
+          placeholder="token"
+          identifier="token"
+          value={newState.token || jenkinsInfo.token}
+          onChange={this.handleChange}
+        />
+        <Button variant="raised">{dataLoaded ? 'Update' : 'Submit'}</Button>
       </Form>
     );
   }
 }
 
-export default Settings;
+const mapStateToProps = state => ({
+  settings: state.settings,
+});
+
+const mapDispatchToProps = dispatch => ({
+  loadData: data => dispatch(loadData(data)),
+  saveData: data => dispatch(saveData(data)),
+  saveInDB: data => dispatch(saveInDB(data)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Settings);
