@@ -1,6 +1,11 @@
 // npm packages
 import React, {Component} from 'react';
 import {range} from 'lodash';
+import {withRouter} from 'react-router-dom';
+
+// our packages
+// eslint-disable-next-line import/no-named-as-default
+import SubMenu from './submenu';
 
 const Category = ({text, onCategoryClick, identifier}) => (
   <strong onClick={onCategoryClick} identifier={identifier}>
@@ -8,25 +13,16 @@ const Category = ({text, onCategoryClick, identifier}) => (
   </strong>
 );
 
-const Link = ({text}) => (
-  <li>
-    <a href="#">{text}</a>
-  </li>
-);
-
-const titleState = status => (status ? 'block' : 'None');
-
 class Menu extends Component {
   constructor(props) {
     super(props);
     this.state = {
       subMenuActiveStatus: {},
     };
-    this.toggleSubMenu = this.toggleSubMenu.bind(this);
   }
 
   componentWillMount() {
-    const totalSubmenu = this.props.data.length;
+    const totalSubmenu = this.props.schema.length;
     const status = range(totalSubmenu).reduce((acc, index) =>
       Object.assign(...acc, {
         [index]: false,
@@ -35,7 +31,12 @@ class Menu extends Component {
     this.setState({subMenuActiveStatus: status});
   }
 
-  toggleSubMenu(e) {
+  goToHome = () => {
+    this.props.history.push('/');
+    this.props.toggleSideBar();
+  };
+
+  toggleSubMenu = e => {
     const index = parseInt(e.target.getAttribute('identifier'), 10);
     this.setState({
       ...this.state,
@@ -44,10 +45,10 @@ class Menu extends Component {
         [index]: !this.state.subMenuActiveStatus[index],
       },
     });
-  }
+  };
 
-  render() {
-    return this.props.data.map((item, index) => {
+  renderMenu = () =>
+    this.props.schema.map((item, index) => {
       return (
         <li key={item.id}>
           <Category
@@ -55,15 +56,27 @@ class Menu extends Component {
             identifier={index}
             onCategoryClick={this.toggleSubMenu}
           />
-          <ul
-            style={{display: titleState(this.state.subMenuActiveStatus[index])}}
-          >
-            {item.items.map(link => <Link text={link.value} key={link.id} />)}
-          </ul>
+          <SubMenu
+            isActive={this.state.subMenuActiveStatus[index]}
+            items={item.items}
+            toggleSideBar={this.props.toggleSideBar}
+          />
         </li>
       );
     });
+
+  render() {
+    return (
+      <div>
+        <Category
+          text="Home"
+          identifier="Home"
+          onCategoryClick={this.goToHome}
+        />
+        {this.renderMenu()}
+      </div>
+    );
   }
 }
 
-export default Menu;
+export default withRouter(Menu);

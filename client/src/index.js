@@ -8,7 +8,7 @@ import {Provider} from 'react-redux';
 import {ConnectedRouter as Router} from 'react-router-redux';
 
 // our packages
-import App from './app';
+import App from './scenes/Base';
 import configureStore from './services/store';
 
 // Create a history of your choosing (we're using a browser history in this case)

@@ -1,3 +1,7 @@
+// npm packages
+import uuidv4 from 'uuid/v4';
+
+// our packages
 import {
   DATA_FETCHED,
   TOGGLE_SIDEBAR,
@@ -5,7 +9,33 @@ import {
   LOADING_COMPLETE,
 } from './actionTypes';
 
+const schema = [
+  {
+    id: uuidv4(),
+    category: 'Build',
+    items: [
+      {
+        id: uuidv4(),
+        text: 'Item 1',
+        link: 'item1',
+      },
+    ],
+  },
+  {
+    id: uuidv4(),
+    category: 'Settings',
+    items: [
+      {
+        id: uuidv4(),
+        text: 'Token',
+        link: 'token',
+      },
+    ],
+  },
+];
+
 const INITIAL_STATE = {
+  schema,
   loading: null,
   showSideBar: false,
   data: [],

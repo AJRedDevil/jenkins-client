@@ -1,7 +1,6 @@
 // npm packages
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {isEmpty} from 'lodash';
 import {BarLoader} from 'react-spinners';
 import {Container, Row, Col} from 'muicss/react';
 
@@ -34,7 +33,10 @@ class Base extends Component {
 
   renderMainBody = () => (
     <div id="body" className={sideBarClassName(this.props.root.showSideBar)}>
-      <SideDrawer data={this.props.root.data} />
+      <SideDrawer
+        schema={this.props.root.schema}
+        toggleSideBar={this.handleToggleSideBar}
+      />
       <Header toggleSideBar={this.handleToggleSideBar} />
       <Content />
       <Footer />
@@ -59,7 +61,7 @@ class Base extends Component {
   );
 
   render() {
-    return this.props.root.loading || isEmpty(this.props.root.data)
+    return this.props.root.loading
       ? this.renderLoader()
       : this.renderMainBody();
   }
