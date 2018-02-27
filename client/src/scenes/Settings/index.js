@@ -36,6 +36,7 @@ class Settings extends Component {
         <legend>Settings</legend>
         <Input
           required
+          label="IP"
           placeholder="ip"
           identifier="ip"
           value={newState.ip || jenkinsInfo.ip}
@@ -43,6 +44,7 @@ class Settings extends Component {
         />
         <Input
           required
+          label="Username"
           placeholder="username"
           identifier="username"
           value={newState.username || jenkinsInfo.username}
@@ -50,6 +52,7 @@ class Settings extends Component {
         />
         <Input
           required
+          label="Token"
           placeholder="token"
           identifier="token"
           value={newState.token || jenkinsInfo.token}
