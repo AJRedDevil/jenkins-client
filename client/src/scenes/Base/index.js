@@ -39,10 +39,7 @@ class Base extends Component {
 
   renderMainBody = () => (
     <div id="body" className={sideBarClassName(this.props.root.showSideBar)}>
-      <SideDrawer
-        schema={this.props.root.schema}
-        toggleSideBar={this.handleToggleSideBar}
-      />
+      <SideDrawer schema={this.props.root.schema} />
       <Header toggleSideBar={this.handleToggleSideBar} />
       <Content />
       <Footer />

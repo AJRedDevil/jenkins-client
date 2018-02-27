@@ -6,9 +6,10 @@ import createHistory from 'history/createBrowserHistory';
 import rxjs from 'rxjs';
 import {Provider} from 'react-redux';
 import {ConnectedRouter as Router} from 'react-router-redux';
+import {Switch, Route} from 'react-router-dom';
 
 // our packages
-import App from './scenes/Base';
+import indexRoutes from './routes';
 import configureStore from './services/store';
 
 // Create a history of your choosing (we're using a browser history in this case)
@@ -17,7 +18,11 @@ const history = createHistory();
 const MainApp = () => (
   <Provider store={configureStore(history)}>
     <Router history={history}>
-      <App />
+      <Switch>
+        {indexRoutes.map(prop => (
+          <Route path={prop.path} component={prop.component} key={prop.key} />
+        ))}
+      </Switch>
     </Router>
   </Provider>
 );

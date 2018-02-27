@@ -9,9 +9,7 @@ export const SubMenu = props => (
   <ul style={{display: titleState(props.isActive)}}>
     {props.items.map(item => (
       <li key={item.id}>
-        <Link to={item.link} onClick={props.toggleSideBar}>
-          {item.text}
-        </Link>
+        <Link to={item.link}>{item.text}</Link>
       </li>
     ))}
   </ul>

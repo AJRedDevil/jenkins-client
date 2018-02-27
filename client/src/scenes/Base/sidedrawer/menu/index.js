@@ -34,7 +34,6 @@ class Menu extends Component {
   handleCategoryClick = e => {
     const link = e.target.getAttribute('link');
     this.props.history.push(link);
-    this.props.toggleSideBar();
   };
 
   toggleSubMenu = e => {
@@ -58,7 +57,6 @@ class Menu extends Component {
       <SubMenu
         isActive={this.state.subMenuActiveStatus[index]}
         items={item.items}
-        toggleSideBar={this.props.toggleSideBar}
       />
     </div>
   );
