@@ -1,5 +1,4 @@
-require('dotenv').config();
-
+// our packages
 const api = require('../index');
 
 const colors = ['red', 'blue', 'yellow'];
