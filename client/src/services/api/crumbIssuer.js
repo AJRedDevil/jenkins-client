@@ -2,9 +2,6 @@
 const Promise = require('bluebird');
 const request = require('request');
 
-// our packages
-const JENKINS_API_URL = require('./config');
-
 const API = '/api/json';
 const CRUMB_ISSUER = `/crumbIssuer${API}`;
 
@@ -16,8 +13,8 @@ const jenkinsCrumb = function() {
    * @param {string|number} arguments for the formatstring pattern.
    * @returns {string} url - the URL formated according to arguments.
    */
-  function buildUrl() {
-    return JENKINS_API_URL + CRUMB_ISSUER;
+  function buildUrl(host) {
+    return host + CRUMB_ISSUER;
   }
 
   /**
@@ -25,17 +22,18 @@ const jenkinsCrumb = function() {
    *
    * @param {function} callback - the callback function to be called when request is finished.
    */
-  const doRequest = function(callback) {
+  const doRequest = function(host, callback) {
     // Build the actual request options
     const requestOptions = {
       method: 'GET',
-      url: buildUrl(),
+      url: buildUrl(host),
       headers: [],
       followAllRedirects: true,
       form: null,
       body: null,
     };
 
+    console.log(requestOptions);
     // Do the request
     request(requestOptions, (error, response, body) => {
       if (error) {
@@ -49,8 +47,8 @@ const jenkinsCrumb = function() {
   };
 
   return {
-    crumbIssuer(callback) {
-      doRequest(callback);
+    crumbIssuer(host, callback) {
+      doRequest(host, callback);
     },
   };
 };

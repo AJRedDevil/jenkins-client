@@ -4,6 +4,8 @@ import {
   SAVE_DATA,
   SAVE_IN_DB,
   SAVED_IN_DB,
+  ENABLE_CSRF,
+  DISABLE_CSRF,
 } from './actionTypes';
 
 export const loadData = data => ({
@@ -28,4 +30,13 @@ export const saveInDB = data => ({
 
 export const savedInDB = () => ({
   type: SAVED_IN_DB,
+});
+
+export const enableCSRF = data => ({
+  type: ENABLE_CSRF,
+  payload: data,
+});
+
+export const disableCSRF = () => ({
+  type: DISABLE_CSRF,
 });

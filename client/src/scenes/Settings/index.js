@@ -1,10 +1,17 @@
 // npm packages
 import React, {Component} from 'react';
-import {Form, Input, Button} from 'muicss/react';
+import {Form, Input, Button, Checkbox} from 'muicss/react';
 import {connect} from 'react-redux';
+import {pick} from 'lodash';
 
 // our packages
-import {loadData, saveData, saveInDB} from '../../services/settings/actions';
+import {
+  loadData,
+  saveData,
+  saveInDB,
+  enableCSRF,
+  disableCSRF,
+} from '../../services/settings/actions';
 
 const KEY = 'jenkinsInfo';
 
@@ -15,18 +22,30 @@ class Settings extends Component {
 
   handleFormSubmit = e => {
     e.preventDefault();
+    const {newState, keys} = this.props.settings;
     this.props.saveInDB({
       key: KEY,
-      value: this.props.settings.newState,
+      value: pick(newState, keys),
     });
     this.props.saveData({dataLoaded: true});
+    newState.isCSRFActive
+      ? this.props.enableCSRF(newState)
+      : this.props.disableCSRF();
   };
 
-  handleChange = e => {
-    e.preventDefault();
-    const key = e.target.getAttribute('identifier');
+  handleInputChange = e => {
+    const key = e.target.getAttribute('name');
     const {value} = e.target;
     this.props.saveData({key, value});
+  };
+
+  handleCheckboxChange = e => {
+    const {name} = e.target;
+    const params = {
+      key: name,
+      value: !this.props.settings.newState.isCSRFActive,
+    };
+    this.props.saveData(params);
   };
 
   render() {
@@ -38,25 +57,31 @@ class Settings extends Component {
           required
           label="IP"
           placeholder="ip"
-          identifier="ip"
+          name="ip"
           value={newState.ip || jenkinsInfo.ip}
-          onChange={this.handleChange}
+          onChange={this.handleInputChange}
         />
         <Input
           required
           label="Username"
           placeholder="username"
-          identifier="username"
+          name="username"
           value={newState.username || jenkinsInfo.username}
-          onChange={this.handleChange}
+          onChange={this.handleInputChange}
         />
         <Input
           required
           label="Token"
           placeholder="token"
-          identifier="token"
+          name="token"
           value={newState.token || jenkinsInfo.token}
-          onChange={this.handleChange}
+          onChange={this.handleInputChange}
+        />
+        <Checkbox
+          name="isCSRFActive"
+          label="CSRF Protection"
+          checked={newState.isCSRFActive}
+          onChange={this.handleCheckboxChange}
         />
         <Button variant="raised">{dataLoaded ? 'Update' : 'Submit'}</Button>
       </Form>
@@ -72,6 +97,8 @@ const mapDispatchToProps = dispatch => ({
   loadData: data => dispatch(loadData(data)),
   saveData: data => dispatch(saveData(data)),
   saveInDB: data => dispatch(saveInDB(data)),
+  enableCSRF: data => dispatch(enableCSRF(data)),
+  disableCSRF: () => dispatch(disableCSRF()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Settings);

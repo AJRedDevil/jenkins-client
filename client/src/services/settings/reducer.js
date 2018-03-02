@@ -8,11 +8,13 @@ const emptyTemplate = {
   ip: '',
   username: '',
   token: '',
+  isCSRFActive: false,
 };
 const INITIAL_STATE = {
   jenkinsInfo: emptyTemplate,
   dataLoaded: false,
   newState: emptyTemplate,
+  keys: Object.keys(emptyTemplate),
 };
 
 const settings = (state = INITIAL_STATE, action) => {

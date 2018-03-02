@@ -3,6 +3,7 @@ const jobs = require('./jobs');
 const queues = require('./queues');
 const views = require('./views');
 const jenkinsCrumb = require('./crumbIssuer');
+const buildJenkinsAPIUrl = require('./config');
 
 const api = {
   builds,
@@ -10,6 +11,7 @@ const api = {
   queues,
   views,
   jenkinsCrumb,
+  buildJenkinsAPIUrl,
 };
 
 module.exports = api;
