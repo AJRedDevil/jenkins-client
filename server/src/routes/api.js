@@ -1,4 +1,7 @@
-const api = require('../api');
+import api from '../api';
+import {getLogger} from '../../util/logger';
+
+const logger = getLogger(__filename);
 
 async function routes(fastify) {
   fastify.get('/', async (request, reply) =>
@@ -14,6 +17,7 @@ async function routes(fastify) {
         const data = await api.crumbIssuer();
         reply.send(data);
       } catch (err) {
+        logger.error(err);
         reply.send({error: err.message});
       }
     },

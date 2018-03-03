@@ -36,7 +36,9 @@
     "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "fastify": "^1.0.0-rc.3",
+    "lodash": "^4.17.5",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "winston": "^3.0.0-rc1"
   }
 }
