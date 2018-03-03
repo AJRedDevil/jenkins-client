@@ -6,12 +6,14 @@ import {routerMiddleware} from 'react-router-redux';
 // our packages
 import rootReducer from './rootReducer';
 import rootEpic from './rootEpic';
+import db from '../../utils/db';
 
 // eslint-disable-next-line no-underscore-dangle
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const epicMiddleware = createEpicMiddleware(rootEpic);
 
 export default function configureStore(history) {
+  db.configure();
   const middlewares = applyMiddleware(
     routerMiddleware(history),
     epicMiddleware

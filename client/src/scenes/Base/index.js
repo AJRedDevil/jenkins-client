@@ -17,7 +17,6 @@ import {
   setLoading,
   dbConfigured,
 } from '../../services/main/actions';
-import db from '../../utils/db';
 
 import './style.styl';
 
@@ -25,10 +24,6 @@ const sideBarClassName = status => (status ? '' : 'hide-sidedrawer');
 
 class Base extends Component {
   componentWillMount() {
-    if (this.props.root.configureDB) {
-      db.configure();
-      this.props.dbConfigured();
-    }
     this.props.setLoading();
     this.props.fetchData();
   }

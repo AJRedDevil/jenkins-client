@@ -6,7 +6,6 @@ import {
   TOGGLE_SIDEBAR,
   LOADING,
   LOADING_COMPLETE,
-  DB_CONFIGURED,
 } from './actionTypes';
 
 const schema = [
@@ -39,7 +38,6 @@ const schema = [
 
 const INITIAL_STATE = {
   schema,
-  configureDB: true,
   loading: null,
   showSideBar: false,
   data: [],
@@ -55,8 +53,6 @@ const main = (state = INITIAL_STATE, action) => {
       return {...state, loading: true};
     case LOADING_COMPLETE:
       return {...state, loading: false};
-    case DB_CONFIGURED:
-      return {...state, configureDB: false};
     default:
       return state;
   }
