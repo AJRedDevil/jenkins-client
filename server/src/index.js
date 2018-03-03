@@ -1,11 +1,27 @@
+require('dotenv').config();
+
+// Require the framework and instantiate it
 const fastify = require('fastify')();
 
-fastify.get('/', async (request, reply) => {
-  reply.type('application/json').code(200);
-  return {hello: 'world'};
-});
+// Register CORS
+fastify.use(require('cors')());
 
-fastify.listen(3000, '127.0.0.1', function(err) {
-  if (err) throw err;
-  console.log(`server listening on ${fastify.server.address().port}`);
-});
+// Register route
+fastify.register(require('./routes'));
+
+// Run the server!
+const start = async () => {
+  try {
+    await fastify.listen(3000, '0.0.0.0', err => {
+      if (err) {
+        fastify.log.error(err);
+        process.exit(1);
+      }
+    });
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+
+start();
