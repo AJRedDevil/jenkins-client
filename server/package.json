@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "AJRedDevil <ajan.shresh@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "eslint": "^4.18.2",
@@ -16,6 +19,7 @@
     "prettier": "^1.11.1"
   },
   "dependencies": {
-    "dotenv": "^5.0.1"
+    "dotenv": "^5.0.1",
+    "fastify": "^1.0.0-rc.3"
   }
 }
