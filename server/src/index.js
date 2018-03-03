@@ -1,4 +1,5 @@
 // our packages
+require('dotenv').config();
 import app from './app';
 import {getLogger} from '../util/logger';
 import {thinky} from './db';

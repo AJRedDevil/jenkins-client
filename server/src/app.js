@@ -1,10 +1,10 @@
 // npm packages
-require('dotenv').config();
 import fastify from 'fastify';
 import cors from 'cors';
 
 // our packages
 import setupRoutes from './routes';
+import settingRoutes from './settings';
 import {getLogger} from '../util/logger';
 
 // Instantiate fastify
@@ -15,6 +15,7 @@ app.use(cors());
 
 // Register route
 app.register(setupRoutes);
+app.register(settingRoutes, {prefix: '/api/settings'});
 
 // logger
 const logger = getLogger(__filename);

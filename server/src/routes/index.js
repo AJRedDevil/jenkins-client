@@ -1,3 +1,3 @@
-const routes = require('./api');
+import api from './api';
 
-module.exports = routes;
+module.exports = api;

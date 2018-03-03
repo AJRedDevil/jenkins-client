@@ -2,7 +2,7 @@
 const rp = require('request-promise');
 
 // our packages
-const HOST = require('./config');
+const {getJenkinsAPIUrl} = require('./config');
 
 const API = '/api/json';
 const CRUMB_ISSUER = `/crumbIssuer${API}`;
@@ -13,7 +13,8 @@ const CRUMB_ISSUER = `/crumbIssuer${API}`;
  * @returns {string} url - the formatted URL.
  */
 function buildUrl() {
-  return HOST + CRUMB_ISSUER;
+  const host = getJenkinsAPIUrl();
+  return host + CRUMB_ISSUER;
 }
 
 /**

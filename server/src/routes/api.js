@@ -3,12 +3,10 @@ import {getLogger} from '../../util/logger';
 
 const logger = getLogger(__filename);
 
-async function routes(fastify) {
-  fastify.get('/', async (request, reply) =>
-    reply.send({SERVER: 'LP Jenkins'})
-  );
+async function routes(app) {
+  app.get('/', async (request, reply) => reply.send({SERVER: 'LP Jenkins'}));
 
-  fastify.route({
+  app.route({
     method: 'GET',
     url: '/crumb',
     schema: {},
