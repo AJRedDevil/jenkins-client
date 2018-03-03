@@ -1,0 +1,9 @@
+{
+  "name": "server",
+  "version": "0.1.0",
+  "description": "Server for Jenkins Client",
+  "main": "index.js",
+  "author": "AJRedDevil <ajan.shresh@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {}
+}
