@@ -6,9 +6,9 @@ import {pick} from 'lodash';
 
 // our packages
 import {
-  loadData,
-  saveData,
-  saveInDB,
+  fetchData,
+  saveDataInState,
+  saveDataInDB,
   enableCSRF,
   disableCSRF,
 } from '../../services/settings/actions';
@@ -17,17 +17,17 @@ const KEY = 'jenkinsInfo';
 
 class Settings extends Component {
   componentWillMount() {
-    this.props.loadData(KEY);
+    this.props.fetchData(KEY);
   }
 
   handleFormSubmit = e => {
     e.preventDefault();
     const {newState, keys} = this.props.settings;
-    this.props.saveInDB({
+    this.props.saveDataInDB({
       key: KEY,
       value: pick(newState, keys),
     });
-    this.props.saveData({dataLoaded: true});
+    this.props.saveDataInState({dataLoaded: true});
     newState.isCSRFActive
       ? this.props.enableCSRF(newState)
       : this.props.disableCSRF();
@@ -36,7 +36,7 @@ class Settings extends Component {
   handleInputChange = e => {
     const key = e.target.getAttribute('name');
     const {value} = e.target;
-    this.props.saveData({key, value});
+    this.props.saveDataInState({key, value});
   };
 
   handleCheckboxChange = e => {
@@ -45,7 +45,7 @@ class Settings extends Component {
       key: name,
       value: !this.props.settings.newState.isCSRFActive,
     };
-    this.props.saveData(params);
+    this.props.saveDataInState(params);
   };
 
   render() {
@@ -59,6 +59,14 @@ class Settings extends Component {
           placeholder="ip"
           name="ip"
           value={newState.ip || jenkinsInfo.ip}
+          onChange={this.handleInputChange}
+        />
+        <Input
+          required
+          label="Port"
+          placeholder="port"
+          name="port"
+          value={newState.port || jenkinsInfo.port}
           onChange={this.handleInputChange}
         />
         <Input
@@ -94,9 +102,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadData: data => dispatch(loadData(data)),
-  saveData: data => dispatch(saveData(data)),
-  saveInDB: data => dispatch(saveInDB(data)),
+  fetchData: data => dispatch(fetchData(data)),
+  saveDataInState: data => dispatch(saveDataInState(data)),
+  saveDataInDB: data => dispatch(saveDataInDB(data)),
   enableCSRF: data => dispatch(enableCSRF(data)),
   disableCSRF: () => dispatch(disableCSRF()),
 });

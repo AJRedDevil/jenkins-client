@@ -2,10 +2,11 @@
 import {isNull} from 'lodash';
 
 // our packages
-import {DATA_LOADED, SAVE_DATA, SAVED_IN_DB} from './actionTypes';
+import {DATA_FETCHED, SAVE_DATA_IN_STATE, SAVE_DATA_IN_DB} from './actionTypes';
 
 const emptyTemplate = {
   ip: '',
+  port: '',
   username: '',
   token: '',
   isCSRFActive: false,
@@ -19,7 +20,7 @@ const INITIAL_STATE = {
 
 const settings = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case DATA_LOADED: {
+    case DATA_FETCHED: {
       if (!isNull(action.payload)) {
         return {
           ...state,
@@ -30,7 +31,7 @@ const settings = (state = INITIAL_STATE, action) => {
       }
       return state;
     }
-    case SAVE_DATA:
+    case SAVE_DATA_IN_STATE:
       return {
         ...state,
         newState: {
@@ -38,7 +39,7 @@ const settings = (state = INITIAL_STATE, action) => {
           [action.payload.key]: action.payload.value,
         },
       };
-    case SAVED_IN_DB:
+    case SAVE_DATA_IN_DB:
       return {...state, dataLoaded: true};
     default:
       return state;

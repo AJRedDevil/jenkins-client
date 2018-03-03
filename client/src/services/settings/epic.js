@@ -6,25 +6,25 @@ import request from 'request';
 
 // our packages
 import {
-  LOAD_DATA,
-  ERROR_IN_LOADING_DATA,
-  SAVE_IN_DB,
-  ERROR_IN_SAVING_DATA,
+  FETCH_DATA,
+  ERROR_IN_FETCHING_DATA,
+  SAVE_DATA_IN_DB,
+  ERROR_SAVING_DATA_IN_DB,
   ENABLE_CSRF,
   DISABLE_CSRF,
 } from './actionTypes';
-import {dataLoaded, savedInDB, saveInDB} from './actions';
+import {dataFetched, dataSavedInDB, saveDataInDB} from './actions';
 import db from '../../utils/db';
 import api from '../api';
 
 const loadSettingsEpic$ = action$ =>
   action$
-    .ofType(LOAD_DATA)
+    .ofType(FETCH_DATA)
     .switchMap(action => db.fetch(action.payload))
-    .map(response => dataLoaded(response))
+    .map(response => dataFetched(response))
     .catch(error =>
       Observable.of({
-        type: ERROR_IN_LOADING_DATA,
+        type: ERROR_IN_FETCHING_DATA,
         payload: error,
         error: true,
       })
@@ -32,12 +32,12 @@ const loadSettingsEpic$ = action$ =>
 
 const saveSettingsEpic$ = action$ =>
   action$
-    .ofType(SAVE_IN_DB)
+    .ofType(SAVE_DATA_IN_DB)
     .switchMap(action => db.save(action.payload.key, action.payload.value))
-    .map(() => savedInDB())
+    .map(() => dataSavedInDB())
     .catch(error =>
       Observable.of({
-        type: ERROR_IN_SAVING_DATA,
+        type: ERROR_SAVING_DATA_IN_DB,
         payload: error,
         error: true,
       })
@@ -59,7 +59,7 @@ const enableCSRFEpic$ = action$ =>
     )
     .do(res => console.log('enb', res))
     .map(response =>
-      saveInDB({
+      saveDataInDB({
         key: 'csrf',
         value: {
           data: pick(response, ['crumbRequestField', 'crumb']),
@@ -69,7 +69,7 @@ const enableCSRFEpic$ = action$ =>
     )
     .catch(error =>
       Observable.of({
-        type: ERROR_IN_SAVING_DATA,
+        type: ERROR_SAVING_DATA_IN_DB,
         payload: error,
         error: true,
       })
@@ -80,7 +80,7 @@ const disableCSRFEpic$ = action$ =>
     .ofType(DISABLE_CSRF)
     .do(() => console.log(DISABLE_CSRF))
     .map(() =>
-      saveInDB({
+      saveDataInDB({
         key: 'csrf',
         value: {
           data: {},
@@ -90,7 +90,7 @@ const disableCSRFEpic$ = action$ =>
     )
     .catch(error =>
       Observable.of({
-        type: ERROR_IN_SAVING_DATA,
+        type: ERROR_SAVING_DATA_IN_DB,
         payload: error,
         error: true,
       })

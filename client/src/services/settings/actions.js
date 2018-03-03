@@ -1,35 +1,35 @@
 import {
-  LOAD_DATA,
-  DATA_LOADED,
-  SAVE_DATA,
-  SAVE_IN_DB,
-  SAVED_IN_DB,
+  FETCH_DATA,
+  DATA_FETCHED,
+  SAVE_DATA_IN_STATE,
+  SAVE_DATA_IN_DB,
+  DATA_SAVED_IN_DB,
   ENABLE_CSRF,
   DISABLE_CSRF,
 } from './actionTypes';
 
-export const loadData = data => ({
-  type: LOAD_DATA,
+export const fetchData = data => ({
+  type: FETCH_DATA,
   payload: data,
 });
 
-export const dataLoaded = data => ({
-  type: DATA_LOADED,
+export const dataFetched = data => ({
+  type: DATA_FETCHED,
   payload: data,
 });
 
-export const saveData = data => ({
-  type: SAVE_DATA,
+export const saveDataInState = data => ({
+  type: SAVE_DATA_IN_STATE,
   payload: data,
 });
 
-export const saveInDB = data => ({
-  type: SAVE_IN_DB,
+export const saveDataInDB = data => ({
+  type: SAVE_DATA_IN_DB,
   payload: data,
 });
 
-export const savedInDB = () => ({
-  type: SAVED_IN_DB,
+export const dataSavedInDB = () => ({
+  type: DATA_SAVED_IN_DB,
 });
 
 export const enableCSRF = data => ({
