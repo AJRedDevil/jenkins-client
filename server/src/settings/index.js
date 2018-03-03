@@ -1,10 +1,13 @@
+import schema from './schema';
 import handler_get from './get';
-import handler_post from './create';
+import handler_create from './create';
+import handle_update from './update';
 
 async function routes(app) {
   // Settings
   app.get('/', handler_get);
-  app.post('/', handler_post);
+  app.post('/', schema.createSettingsSchema, handler_create);
+  app.post('/:id', schema.updateSettingsSchema, handle_update);
 }
 
 module.exports = routes;
