@@ -39,6 +39,7 @@
     "lodash": "^4.17.5",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
+    "thinky": "^2.3.9",
     "winston": "^3.0.0-rc1"
   }
 }

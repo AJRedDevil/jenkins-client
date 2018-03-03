@@ -1,39 +1,19 @@
-require('dotenv').config();
-
-// Require the framework and instantiate it
-const fastify = require('fastify')();
-
-// Register CORS
-fastify.use(require('cors')());
-
-// Register route
-fastify.register(require('./routes'));
-
-// logger
+// our packages
+import app from './app';
 import {getLogger} from '../util/logger';
+import {thinky} from './db';
 const logger = getLogger(__filename);
-// Hook logger in every request
-fastify.addHook('onRequest', (req, res, next) => {
-  logger.info(req.url);
-  next();
+
+// wait for DB to initialize
+thinky.dbReady().then(() => {
+  logger.info('Database ready, starting server...');
+  app.start();
 });
 
-// Run the server!
-const start = async () => {
-  try {
-    await fastify.listen(3000, '0.0.0.0', err => {
-      if (err) {
-        logger.error(err);
-        fastify.log.error(err);
-        process.exit(1);
-      }
-      logger.info('Server is hosted in port 3000.');
-    });
-  } catch (err) {
-    logger.error(err);
-    fastify.log.error(err);
-    process.exit(1);
-  }
-};
-
-start();
+// output all uncaught expections
+process.on('uncaughtException', err =>
+  logger.error('uncaught exception:', err)
+);
+process.on('unhandledRejection', err =>
+  logger.error('uncaught rejection:', err)
+);
