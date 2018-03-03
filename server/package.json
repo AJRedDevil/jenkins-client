@@ -6,8 +6,18 @@
   "author": "AJRedDevil <ajan.shresh@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node index.js",
+    "db:create": "node util/db/create",
+    "db:start": "docker start lpjenkinsdb",
+    "db:stop": "docker stop lpjenkinsdb",
+    "db:rm": "docker rm lpjenkinsdb"
   },
+  "keywords": [
+    "rest",
+    "javascript",
+    "logpoint",
+    "jenkins"
+  ],
   "devDependencies": {
     "babel-eslint": "^8.2.2",
     "eslint": "^4.18.2",
