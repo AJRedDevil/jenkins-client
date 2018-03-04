@@ -23,15 +23,15 @@ export default async (request, reply) => {
     }
 
     // update settings
-    settings = Object.assign(settings, {config: body});
+    settings = Object.assign(settings, body);
 
     // // save settings
     await settings.save();
 
     // send updated settings back
-    return reply.send(settings);
+    return reply.send({success: true, data: settings});
   } catch (err) {
     logger.error(err);
-    reply.send({error: err.message});
+    reply.send({message: err.message, success: false});
   }
 };

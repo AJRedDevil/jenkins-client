@@ -11,9 +11,9 @@ export default async (request, reply) => {
   try {
     const settings = await Settings.limit(1).execute();
     const setting = isEmpty(settings) > 0 ? {} : settings[0];
-    reply.send(setting);
+    reply.send({data: setting, success: true});
   } catch (err) {
     logger.error(err);
-    reply.send({error: err.message});
+    reply.send({message: err.message, success: false});
   }
 };
