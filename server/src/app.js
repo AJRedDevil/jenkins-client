@@ -5,6 +5,7 @@ import cors from 'cors';
 // our packages
 import appRoutes from './routes';
 import settingRoutes from './settings';
+import csrfProtectionRoutes from './csrfProtection';
 import {getLogger} from '../util/logger';
 
 // Instantiate fastify
@@ -16,6 +17,7 @@ app.use(cors());
 // Register route
 app.register(appRoutes);
 app.register(settingRoutes, {prefix: '/api/settings'});
+app.register(csrfProtectionRoutes, {prefix: '/api/csrfprotection'});
 
 // logger
 const logger = getLogger(__filename);
@@ -29,7 +31,7 @@ app.addHook('onRequest', (req, res, next) => {
 // Run the server!
 const start = async () => {
   try {
-    await app.listen(3000, '0.0.0.0', err => {
+    await app.listen(8000, '0.0.0.0', err => {
       if (err) {
         logger.error(err);
         app.log.error(err);
