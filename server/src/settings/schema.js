@@ -1,7 +1,7 @@
 // // npm packages
 import Joi from 'joi';
 
-const keys = ['ip', 'port', 'token', 'username', 'isCSRFActive'];
+const keys = ['ip', 'port', 'token', 'username'];
 
 const body = {
   body: Joi.object()
@@ -18,7 +18,6 @@ const body = {
       username: Joi.string()
         .required()
         .empty(''),
-      isCSRFActive: Joi.boolean().required(),
     })
     .required(),
 };
