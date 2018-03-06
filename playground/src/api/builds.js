@@ -10,7 +10,7 @@ const buildWithParams = (jenkinJob, params = {}) =>
 const stopBuild = (jenkinJob, params = {}) =>
   jenkins.stop_build(jenkinJob, params);
 
-const consoleOutout = (jenkinJob, buildName, params = {}) =>
+const consoleOutput = (jenkinJob, buildName, params = {}) =>
   jenkins.console_output(jenkinJob, buildName, params);
 
 const buildInfo = (jenkinJob, buildName, params = {}) =>
@@ -32,7 +32,7 @@ const Builds = {
   build,
   buildWithParams,
   stopBuild,
-  consoleOutout,
+  consoleOutput,
   buildInfo,
   lastBuildInfo,
   lastCompletedBuildInfo,

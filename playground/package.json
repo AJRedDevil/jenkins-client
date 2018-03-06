@@ -10,7 +10,7 @@
     "test"
   ],
   "scripts": {
-    "start": "DEBUG=api node src/index.js"
+    "start": "DEBUG=* DEBUG_COLORS=true node src/index.js"
   },
   "dependencies": {
     "babel-preset-env": "^1.6.1",
