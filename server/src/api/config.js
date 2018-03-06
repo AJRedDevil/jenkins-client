@@ -5,4 +5,7 @@ const getJenkinsAPIUrl = () => {
   return `http://${username}:${token}@${jenkinSite}`;
 };
 
-module.exports = {getJenkinsAPIUrl};
+const createJenkinsAPIUrl = ({username, token, ip, port}) =>
+  `http://${username}:${token}@${ip}:${port}`;
+
+module.exports = {getJenkinsAPIUrl, createJenkinsAPIUrl};

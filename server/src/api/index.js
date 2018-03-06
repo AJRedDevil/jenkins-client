@@ -1,7 +1,8 @@
-const HOST = require('./config');
+const {getJenkinsAPIUrl, createJenkinsAPIUrl} = require('./config');
 const crumbIssuer = require('./crumbIssuer');
 
 module.exports = {
-  HOST,
+  HOST: getJenkinsAPIUrl(),
+  createJenkinsAPIUrl,
   crumbIssuer,
 };

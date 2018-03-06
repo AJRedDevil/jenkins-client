@@ -12,8 +12,8 @@ const CRUMB_ISSUER = `/crumbIssuer${API}`;
  *
  * @returns {string} url - the formatted URL.
  */
-function buildUrl() {
-  const host = getJenkinsAPIUrl();
+function buildUrl(jenkinsUrl) {
+  const host = jenkinsUrl || getJenkinsAPIUrl();
   return host + CRUMB_ISSUER;
 }
 
@@ -21,11 +21,12 @@ function buildUrl() {
  * Run the actual HTTP request.
  *
  */
-const jenkinsCrumbRequest = function() {
+const jenkinsCrumbRequest = function(jenkinsUrl) {
   const requestOptions = {
-    uri: buildUrl(),
+    uri: buildUrl(jenkinsUrl),
     json: true,
   };
+
   // Do the request
   return rp(requestOptions)
     .then(res => res)
