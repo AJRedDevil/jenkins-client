@@ -4,13 +4,18 @@ import {
   SAVE_DATA_IN_STATE,
   SAVE_DATA_IN_DB,
   DATA_SAVED_IN_DB,
+  UPDATE_DATA_IN_DB,
+  DATA_UPDATED_IN_DB,
   ENABLE_CSRF,
   DISABLE_CSRF,
+  CSRF_ENABLED,
+  CSRF_DISABLED,
+  FETCH_CSRF_DATA,
+  CSRF_DATA_FETCHED,
 } from './actionTypes';
 
-export const fetchData = data => ({
+export const fetchData = () => ({
   type: FETCH_DATA,
-  payload: data,
 });
 
 export const dataFetched = data => ({
@@ -28,8 +33,28 @@ export const saveDataInDB = data => ({
   payload: data,
 });
 
-export const dataSavedInDB = () => ({
+export const dataSavedInDB = data => ({
   type: DATA_SAVED_IN_DB,
+  payload: data,
+});
+
+export const updateDataInDB = data => ({
+  type: UPDATE_DATA_IN_DB,
+  payload: data,
+});
+
+export const dataUpdateddInDB = data => ({
+  type: DATA_UPDATED_IN_DB,
+  payload: data,
+});
+
+export const fetchCsrfData = () => ({
+  type: FETCH_CSRF_DATA,
+});
+
+export const csrfDataFetched = data => ({
+  type: CSRF_DATA_FETCHED,
+  payload: data,
 });
 
 export const enableCSRF = data => ({
@@ -37,6 +62,17 @@ export const enableCSRF = data => ({
   payload: data,
 });
 
-export const disableCSRF = () => ({
+export const csrfEnabled = data => ({
+  type: CSRF_ENABLED,
+  payload: data,
+});
+
+export const disableCSRF = data => ({
   type: DISABLE_CSRF,
+  payload: data,
+});
+
+export const csrfDisabled = data => ({
+  type: CSRF_DISABLED,
+  payload: data,
 });
