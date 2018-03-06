@@ -1,5 +1,6 @@
 import Settings from './settings';
-import CsrfProtection from './csrfProtection';
+import Csrf from './csrf';
+import Crumb from './crumb';
 
 export {thinky, r} from './thinky';
-export {Settings, CsrfProtection};
+export {Settings, Csrf, Crumb};
