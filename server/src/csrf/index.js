@@ -6,8 +6,8 @@ import handler_delete from './delete';
 async function routes(app) {
   // Settings
   app.get('/', handler_get);
-  app.post('/', schema.createCsrfProtectionSchema, handler_create);
-  app.delete('/', handler_delete);
+  app.post('/', schema.createCsrfSchema, handler_create);
+  app.delete('/:id', schema.deleteCsrfSchema, handler_delete);
 }
 
 module.exports = routes;

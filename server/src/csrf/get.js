@@ -3,15 +3,15 @@ import {isEmpty} from 'lodash';
 
 // our packages
 import {getLogger} from '../../util/logger';
-import {CsrfProtection} from '../db';
+import {Csrf} from '../db';
 
-const logger = getLogger('Settings.get');
+const logger = getLogger('Csrf.get');
 
 export default async (request, reply) => {
   try {
-    const allData = await CsrfProtection.limit(1).execute();
-    const csrfProtection = isEmpty(allData) > 0 ? {} : allData[0];
-    reply.send({data: csrfProtection, success: true});
+    const allData = await Csrf.limit(1).execute();
+    const csrf = isEmpty(allData) > 0 ? {} : allData[0];
+    reply.send({data: csrf, success: true});
   } catch (err) {
     logger.error(err);
     reply.send({message: err.message, success: false});
