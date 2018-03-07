@@ -1,0 +1,6 @@
+export const LOADING = '@HOME/LOADING';
+export const LOADING_COMPLETE = '@HOME/LOADING_COMPLETE';
+
+export const FETCH_DATA = '@HOME/FETCH_DATA';
+export const DATA_FETCHED = '@HOME/DATA_FETCHED';
+export const ERROR_IN_DATA_FETCH = '@HOME/ERROR_IN_DATA_FETCH';
