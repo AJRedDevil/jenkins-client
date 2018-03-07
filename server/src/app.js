@@ -4,8 +4,9 @@ import cors from 'cors';
 
 // our packages
 import appRoutes from './routes';
-import settingRoutes from './settings';
+import buildRoutes from './build';
 import csrfRoutes from './csrf';
+import settingRoutes from './settings';
 import {getLogger} from '../util/logger';
 
 // Instantiate fastify
@@ -18,6 +19,7 @@ app.use(cors());
 app.register(appRoutes);
 app.register(settingRoutes, {prefix: '/api/settings'});
 app.register(csrfRoutes, {prefix: '/api/csrf'});
+app.register(buildRoutes, {prefix: '/api/build'});
 
 // logger
 const logger = getLogger(__filename);
@@ -37,7 +39,7 @@ const start = async () => {
         app.log.error(err);
         process.exit(1);
       }
-      logger.info('Server is hosted in port 3000.');
+      logger.info('Server is hosted in port 8000.');
     });
   } catch (err) {
     logger.error(err);
