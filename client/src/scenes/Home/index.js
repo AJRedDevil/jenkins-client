@@ -1,42 +1,80 @@
-import React from 'react';
+// npm packages
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {RingLoader} from 'react-spinners';
+import {Container, Row, Col, Panel} from 'muicss/react';
+import {isEmpty} from 'lodash';
 
-const Home = () => (
-  <div>
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-      sollicitudin volutpat molestie. Nullam id tempor nulla. Aenean sit amet
-      urna et elit pharetra consequat. Aliquam fringilla tortor vitae lectus
-      tempor, tempor bibendum nunc elementum. Etiam ultrices tristique diam,
-      vitae sodales metus bibendum id. Suspendisse blandit ligula eu fringilla
-      pretium. Mauris dictum gravida tortor eu lacinia. Donec purus purus,
-      ornare sit amet consectetur sed, dictum sitamet ex. Vivamus sit amet
-      imperdiet tellus. Quisque ultrices risus a massa laoreet, vitae tempus sem
-      congue. Maecenas nec eros ut lectus vehicula rutrum. Donec consequat
-      tincidunt arcu non faucibus. Duis elementum, ante venenatis lacinia
-      cursus, turpis massa congue magna, sed dapibus felis nibh sed tellus. Nam
-      consectetur non nibh vitae sodales. Pellentesque malesuada dolor nec mi
-      volutpat, eget vehicula eros ultrices.
-    </p>
-    <p>
-      Aenean vehicula tortor a tellus porttitor, id elementum est tincidunt.
-      Etiam varius odio tortor. Praesent vel pulvinar sapien. Praesent ac
-      sodales sem. Phasellus id ultrices massa. Sed id erat sit amet magna
-      accumsan vulputate eu at quam. Etiam feugiat semper imperdiet. Sed a sem
-      vitae massa condimentum vestibulum. In vehicula, quam vel aliquet aliquam,
-      enim elit placerat libero, at pretium nisi lorem in ex. Vestibulum lorem
-      augue, semper a efficitur in, dictum vitae libero. Donec velit est,
-      sollicitudin a volutpat quis, iaculis sit amet metus. Nulla at ante nec
-      dolor euismod mattis cursus eu nisl.
-    </p>
-    <p>
-      Quisque interdum facilisis consectetur. Nam eu purus purus. Curabitur in
-      ligula quam. Nam euismod ligula eu tellus pellentesque laoreet. Aliquam
-      erat volutpat. Curabitur eu bibendum velit. Cum sociis natoque penatibus
-      et magnis dis parturient montes, nascetur ridiculus mus. Nunc efficitur
-      lorem sit amet quam porta pharetra. Cras ultricies pellentesque eros sit
-      amet semper.
-    </p>
-  </div>
-);
+// our packages
+import {fetchData, setLoading} from '../../services/home/actions';
 
-export default Home;
+import './home.styl';
+
+class Home extends Component {
+  componentWillMount() {
+    this.props.setLoading();
+    this.props.fetchData();
+  }
+
+  renderMainBody = () => {
+    const lastBuild = this.props.home.data;
+    const params = lastBuild.actions[0].parameters;
+    console.log(params);
+    return (
+      <Container className="parent">
+        <Row className="row">
+          <Col md="4" />
+          <Col md="4" className="center-me">
+            <Panel>
+              <span className="icon-small">
+                {lastBuild.result === 'SUCCESS' ? (
+                  <i className="material-icons">thumb_up</i>
+                ) : (
+                  <i className="material-icons">thumb_down</i>
+                )}
+                <h4>{lastBuild.fullDisplayName}</h4>
+              </span>
+              <p>Filename: {lastBuild.artifacts[0].fileName}</p>
+              <p>DC-Back: #{params[0].value}</p>
+              <p>DC-Front: #{params[1].value}</p>
+            </Panel>
+          </Col>
+          <Col md="4" />
+        </Row>
+      </Container>
+    );
+  };
+
+  renderLoader = () => (
+    <Container fluid className="parent">
+      <Row className="row">
+        <Col md="4" />
+        <Col md="4" className="center-me">
+          <RingLoader
+            color="#4A90E2"
+            loading={this.props.home.loading}
+            size={100}
+          />
+        </Col>
+        <Col md="4" />
+      </Row>
+    </Container>
+  );
+
+  render() {
+    return this.props.home.loading || isEmpty(this.props.home.data)
+      ? this.renderLoader()
+      : this.renderMainBody();
+  }
+}
+
+const mapStateToProps = state => ({
+  home: state.home,
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchData: () => dispatch(fetchData()),
+  setLoading: () => dispatch(setLoading()),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
