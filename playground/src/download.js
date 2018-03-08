@@ -15,9 +15,9 @@ const error = debug('scp:error');
 log('booting %o', NAME);
 
 // const downloadClient = new Client({
-//   host: '10.45.1.209',
-//   username: 'ubuntu',
-//   password: 'ubuntu',
+//   host: '',
+//   username: '',
+//   password: '',
 // });
 // const downloadSrc = '/logpoint/DownloadPak/Director_Console-1.3.0.20.pak';
 // const downloadDest = 'Director_Console-1.3.0.20.pak';
@@ -25,15 +25,6 @@ log('booting %o', NAME);
 // downloadClient.download(downloadSrc, downloadDest, function(err) {
 //   error(err);
 // });
-// /*
-// client.on('progress', function(progress) {
-//   const completed = Math.floor(progress.percentage) + ' %';
-//   const downloadSpeed = pretty(progress.speed) + '/sec';
-//   const eta = prettySeconds(progress.eta);
-//   const length = pretty(progress.length);
-//   console.log(`${length} ${completed} ${downloadSpeed} ${eta}`);
-// });
-// */
 // let downloadBar;
 // downloadClient.on('transfer', function(buf, downloaded, len) {
 //   if (!downloadBar) {
@@ -53,12 +44,10 @@ log('booting %o', NAME);
 // });
 
 const uploadClient = new Client({
-  host: '10.0.0.61',
-  username: 'support',
-  privateKey: require('fs').readFileSync(
-    '/Users/AJRedDevil/Documents/LP/id_rsa'
-  ),
-  passphrase: 'XFGloop422log',
+  host: '',
+  username: '',
+  privateKey: require('fs').readFileSync('path'),
+  passphrase: '',
 });
 const uploadSrc = 'Director_Console-1.3.0.20.pak';
 const uploadDest = '/home/support';
