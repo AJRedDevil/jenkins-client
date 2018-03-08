@@ -4,14 +4,12 @@ const upload = require('./upload');
 const downloadConfig = {
   src: '/logpoint/DownloadPak',
   dest: '/Users/AJRedDevil/Desktop',
-  filename: 'install.sh',
-  // filename: 'Director_Console-1.3.0.21.pak',
+  filename: 'Director_Console-1.3.0.22.pak',
 };
 const uploadConfig = {
   src: '/Users/AJRedDevil/Desktop',
   dest: '/home/support',
-  filename: 'install.sh',
-  // filename: 'Director_Console-1.3.0.18.pak',
+  filename: 'Director_Console-1.3.0.22.pak',
 };
 
 const onSuccessUpload = () =>

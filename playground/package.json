@@ -13,7 +13,8 @@
     "start": "DEBUG=* DEBUG_COLORS=true node src/index.js",
     "test:download": "NODE_ENV=development node src/download.js",
     "test:upload": "NODE_ENV=development node src/upload.js",
-    "test": "NODE_ENV=development node src/testFiles.js"
+    "test": "NODE_ENV=development node src/testFiles.js",
+    "test:job": "node src/testJob.js"
   },
   "dependencies": {
     "async": "~0.9.0",

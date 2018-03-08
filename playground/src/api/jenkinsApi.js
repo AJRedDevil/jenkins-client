@@ -1,6 +1,6 @@
 const Promise = require('bluebird');
-const jenkinsAPI = require('jenkins-api');
 
+const jenkinsAPI = require('../lib/jenkins-api');
 const {JENKINS_API_URL, HEADERS} = require('./config');
 
 const jenkins = (() => {

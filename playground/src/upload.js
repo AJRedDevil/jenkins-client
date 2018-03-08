@@ -5,7 +5,7 @@ const path = require('path');
 const ProgressBar = require('progress');
 
 // our packages
-const Client = require('./scp2').Client;
+const Client = require('./lib/scp2').Client;
 
 // Generate the upload client
 const getUploadClient = () =>

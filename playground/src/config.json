@@ -1,0 +1,25 @@
+{
+  "job": "create_pak",
+  "params": [
+    {
+      "job": "Analyza_And_Trigger_ManagementConsole_Backend",
+      "params": {
+        "useGeneric": "True",
+        "genericBranch": "feature/DC_1.3.0",
+        "management_console_backend": "feature/DC_1.3.0",
+        "job_to_build": "dcfront-1.3.0"
+      },
+      "createNew": false
+    },
+    {
+      "job": "Analyze_And_Trigger_ManagementConsole_Webapp",
+      "params": {
+        "useGeneric": "True",
+        "genericBranch": "feature/DC_1.3.0",
+        "management_console_backend": "feature/DC_1.3.0",
+        "job_to_build": "dcfront-1.3.0"
+      },
+      "createNew": false
+    }
+  ]
+}
