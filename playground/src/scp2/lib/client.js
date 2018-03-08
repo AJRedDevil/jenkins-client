@@ -236,7 +236,7 @@ Client.prototype.write = function(options, callback) {
               byteRead,
               buf
             ) {
-              self.emit('transfer', buf, lastCursor, length);
+              self.emit('transfer', buf, lastIndex, attrs.size);
               sftp.write(handle, buf, 0, buf.length, lastIndex, function(err) {
                 lastIndex += buf.length;
                 lastCursor += 1;
