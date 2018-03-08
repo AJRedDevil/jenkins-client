@@ -10,15 +10,23 @@
     "test"
   ],
   "scripts": {
-    "start": "DEBUG=* DEBUG_COLORS=true node src/index.js"
+    "start": "DEBUG=* DEBUG_COLORS=true node src/index.js",
+    "test:download": "DEBUG=* DEBUG_COLORS=true node src/download.js"
   },
   "dependencies": {
+    "async": "~0.9.0",
     "babel-preset-env": "^1.6.1",
     "bluebird": "^3.5.1",
+    "chalk": "^2.3.2",
     "debug": "^3.1.0",
     "dotenv": "^5.0.1",
+    "glob": "~7.0.3",
     "jenkins-api": "^0.3.1",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "pretty-seconds": "^0.2.1",
+    "prettysize": "^1.1.0",
+    "progress": "^2.0.0",
+    "ssh2": "~0.4.10"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
