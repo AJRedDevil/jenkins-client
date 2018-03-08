@@ -7,23 +7,24 @@ const ProgressBar = require('progress');
 // our packages
 const Client = require('./scp2').Client;
 
-// Generate the download client
-const getDownloadClient = () =>
+// Generate the upload client
+const getUploadClient = () =>
   Promise.resolve(
     new Client({
-      host: process.env.DOWNLOAD_HOST,
-      username: process.env.DOWNLOAD_USERNAME,
-      password: process.env.DOWNLOAD_PASSWORD,
+      host: process.env.UPLOAD_HOST,
+      username: process.env.UPLOAD_USERNAME,
+      privateKey: require('fs').readFileSync(process.env.KEY_PATH),
+      passphrase: process.env.PASSPHRASE,
     })
   );
 
-// Display the download status
-const displayDownloadBar = client => {
-  let downloadBar;
-  client.on('transfer', function(buf, downloaded, len) {
-    if (!downloadBar) {
-      downloadBar = new ProgressBar(
-        `downloading [${chalk.magenta(':bar')}] :rate/bps ${chalk.green(
+// Display the upload status
+const displayUploadBar = client => {
+  let uploadBar;
+  client.on('transfer', function(buf, uploaded, len) {
+    if (!uploadBar) {
+      uploadBar = new ProgressBar(
+        `uploading [${chalk.magenta(':bar')}] :rate/bps ${chalk.green(
           ':percent'
         )} :etas :elapseds`,
         {
@@ -34,31 +35,28 @@ const displayDownloadBar = client => {
         }
       );
     }
-    downloadBar.tick(buf.length);
+    uploadBar.tick(buf.length);
   });
 };
 
-const download = ({src, dest, filename}) =>
-  getDownloadClient()
+const upload = ({src, dest, filename}) =>
+  getUploadClient()
     .then(client => {
-      const srcFP = path.join(src, filename);
-      const destFP = path.join(dest, filename);
-      console.log(
-        chalk.yellow(`downloading ${filename} from ${src} to ${dest}`)
-      );
+      const fp = path.join(src, filename);
+      console.log(chalk.yellow(`uploading ${filename} from ${src} to ${dest}`));
       return new Promise((resolve, reject) => {
-        client.download(srcFP, destFP, err => {
+        client.upload(fp, dest, err => {
           if (err) {
             return reject({success: false, message: err});
           }
           resolve({success: true, message: 'finito'});
         });
-        displayDownloadBar(client);
+        displayUploadBar(client);
       });
     })
     .catch(err => console.log(err));
 
-module.exports = download;
+module.exports = upload;
 
 // Testing
 /*
@@ -68,7 +66,7 @@ if (process.env.NODE_ENV === 'development') {
     dest: '',
     filename: '',
   };
-  download(config)
+  upload(config)
     .then(res => {
       if (res.success) {
         process.exit(0);

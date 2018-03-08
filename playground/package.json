@@ -11,7 +11,9 @@
   ],
   "scripts": {
     "start": "DEBUG=* DEBUG_COLORS=true node src/index.js",
-    "test:download": "DEBUG=* DEBUG_COLORS=true node src/download.js"
+    "test:download": "NODE_ENV=development node src/download.js",
+    "test:upload": "NODE_ENV=development node src/upload.js",
+    "test": "NODE_ENV=development node src/testFiles.js"
   },
   "dependencies": {
     "async": "~0.9.0",
@@ -23,8 +25,6 @@
     "glob": "~7.0.3",
     "jenkins-api": "^0.3.1",
     "lodash": "^4.17.5",
-    "pretty-seconds": "^0.2.1",
-    "prettysize": "^1.1.0",
     "progress": "^2.0.0",
     "ssh2": "~0.4.10"
   },
