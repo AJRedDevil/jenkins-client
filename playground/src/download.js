@@ -6,6 +6,7 @@ const ProgressBar = require('progress');
 
 // our packages
 const Client = require('./lib/scp2').Client;
+const {printInfo, printError, printSuccess} = require('./util');
 
 // Generate the download client
 const getDownloadClient = () =>
@@ -38,25 +39,25 @@ const displayDownloadBar = client => {
   });
 };
 
-const download = ({src, dest, filename}) =>
+const download = ({src, dest = '.', filename}) =>
   getDownloadClient()
     .then(client => {
       const srcFP = path.join(src, filename);
       const destFP = path.join(dest, filename);
-      console.log(
-        chalk.yellow(`downloading ${filename} from ${src} to ${dest}`)
-      );
+      printInfo(`downloading ${filename} from ${src} to ${dest}`);
+      printInfo(new Date().toLocaleTimeString());
       return new Promise((resolve, reject) => {
         client.download(srcFP, destFP, err => {
           if (err) {
             return reject({success: false, message: err});
           }
+          printSuccess(`${filename} download Complete`);
           resolve({success: true, message: 'finito'});
         });
         displayDownloadBar(client);
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => printError(err));
 
 module.exports = download;
 
@@ -75,6 +76,6 @@ if (process.env.NODE_ENV === 'development') {
       }
       process.exit(1);
     })
-    .catch(err => console.log(err));
+    .catch(err => printError(err));
 }
 */

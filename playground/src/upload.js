@@ -6,6 +6,7 @@ const ProgressBar = require('progress');
 
 // our packages
 const Client = require('./lib/scp2').Client;
+const {printInfo, printError, printSuccess} = require('./util');
 
 // Generate the upload client
 const getUploadClient = () =>
@@ -39,22 +40,24 @@ const displayUploadBar = client => {
   });
 };
 
-const upload = ({src, dest, filename}) =>
+const upload = ({src = '.', dest, filename}) =>
   getUploadClient()
     .then(client => {
       const fp = path.join(src, filename);
-      console.log(chalk.yellow(`uploading ${filename} from ${src} to ${dest}`));
+      printInfo(`uploading ${filename} from ${src} to ${dest}`);
+      printInfo(new Date().toLocaleTimeString());
       return new Promise((resolve, reject) => {
         client.upload(fp, dest, err => {
           if (err) {
             return reject({success: false, message: err});
           }
+          printSuccess(`${filename} upload Complete`);
           resolve({success: true, message: 'finito'});
         });
         displayUploadBar(client);
       });
     })
-    .catch(err => console.log(err));
+    .catch(err => printError(err));
 
 module.exports = upload;
 
@@ -73,6 +76,6 @@ if (process.env.NODE_ENV === 'development') {
       }
       process.exit(1);
     })
-    .catch(err => console.log(err));
+    .catch(err => printError(err));
 }
 */

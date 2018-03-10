@@ -21,5 +21,11 @@
       },
       "createNew": false
     }
-  ]
+  ],
+  "download": {
+    "src": "/logpoint/DownloadPak"
+  },
+  "upload": {
+    "dest": "/home/support"
+  }
 }
