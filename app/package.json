@@ -10,7 +10,7 @@
     "start": "electron ."
   },
   "dependencies": {
-    "electron": "^15.5.5",
+    "electron": "^18.3.7",
     "electron-is-dev": "^0.3.0",
     "localforage": "^1.5.6"
   },
